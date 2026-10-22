@@ -4,6 +4,8 @@
 A software synthesizer and VST3 plugin built with C++ (JUCE) and a web-based UI.
 The name Jolley comes from the discrete summation formula by L.B.W. Jolley used in the oscillators.
 
+![alt text](screenshot.png)
+
 ---
 
 ## Features
