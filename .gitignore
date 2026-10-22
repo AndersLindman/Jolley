@@ -1,0 +1,36 @@
+# --- JUCE / C++ Build Artifacts ---
+build/
+Builds/
+JuceLibraryCode/
+.gradle/
+bin/
+obj/
+
+# --- IDE & Operating System Files ---
+.vs/
+.vscode/
+*.xcodeproj
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+.DS_Store
+Thumbs.db
+
+# --- Web / WebView Code ---
+node_modules/
+dist/
+build-web/
+.parcel-cache/
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- Environment & Local Secrets ---
+.env
+.env.local
+
+# --- Zips and Archives ---
+Resources/
+*.zip
