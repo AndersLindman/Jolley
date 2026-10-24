@@ -1,6 +1,7 @@
 import { bus } from '../eventBus.js';
 import { FACTORY_PRESETS } from './FactoryPresets.js';
-import { paramStore } from './ParameterStore.js'; // <-- Direct import, no constructor injection needed!
+import { paramStore } from './ParameterStore.js';
+import { PARAM_IDS } from './paramIds.js';
 
 export class PresetManager {
     constructor() {
@@ -56,7 +57,7 @@ export class PresetManager {
         this.loadState(preset.values);
 
         // Update the preset index UI control if it exists
-        if (paramStore.parameters.has('preset_index') && this.factoryPresets.length > 1) {
+        if (paramStore.parameters.has(PARAM_IDS.PRESET_INDEX) && this.factoryPresets.length > 1) {
             const norm = index / (this.factoryPresets.length - 1);
             paramStore.setNormalized('preset_index', norm, 'ui', true);
         }

@@ -27,9 +27,7 @@ public:
 private:
     // These must be static so they can be called from the initializer list 
     // before the `this` pointer is fully constructed.
-    static std::vector<std::unique_ptr<Relay>>
-        createRelays (JolleyAudioProcessor&, juce::WebBrowserComponent&);
-
+    static std::vector<std::unique_ptr<Relay>> createRelays (JolleyAudioProcessor&);
     static std::vector<std::unique_ptr<Attachment>>
         createAttachments (JolleyAudioProcessor&, const std::vector<std::unique_ptr<Relay>>&);
 

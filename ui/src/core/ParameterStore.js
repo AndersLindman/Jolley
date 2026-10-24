@@ -88,7 +88,7 @@ export class ParameterStore {
         }
 
         // If change originated from UI, update the JUCE webview state object
-        if (origin === 'ui' || origin !== 'host' || forceEmit) {
+        if (origin !== 'host' || forceEmit) {
             const juceState = this.juceStates.get(id);
             if (juceState && Math.abs(juceState.getNormalisedValue() - param.normalized) > 0.0001) {
                 juceState.setNormalisedValue(param.normalized);

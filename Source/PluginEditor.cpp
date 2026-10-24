@@ -29,7 +29,7 @@ namespace
 JolleyAudioProcessorEditor::JolleyAudioProcessorEditor (JolleyAudioProcessor& p)
     : AudioProcessorEditor (&p),
       audioProcessor (p),
-      relays      (createRelays (p, webView)),
+      relays      (createRelays (p)),
       webView     (createBrowserOptions (relays)),
       attachments (createAttachments (p, relays))
 {
@@ -67,14 +67,18 @@ JolleyAudioProcessorEditor::~JolleyAudioProcessorEditor()
 }
 
 std::vector<std::unique_ptr<JolleyAudioProcessorEditor::Relay>>
-JolleyAudioProcessorEditor::createRelays (JolleyAudioProcessor& processor,
-                                          WebBrowserComponent& browser)
+JolleyAudioProcessorEditor::createRelays (JolleyAudioProcessor& processor)
 {
     std::vector<std::unique_ptr<Relay>> result;
 
-   for (auto* param : processor.parameters.processor.getParameters())
+    for (auto* param : processor.parameters.processor.getParameters())
+    {
         if (auto* rangedParam = dynamic_cast<RangedAudioParameter*> (param))
-          result.push_back (std::make_unique<Relay> (browser, rangedParam->getParameterID()));
+        {
+            result.push_back (
+                std::make_unique<Relay> (rangedParam->getParameterID()));
+        }
+    }
 
     return result;
 }

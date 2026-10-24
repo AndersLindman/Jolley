@@ -37,15 +37,6 @@ export class PresetDropdown extends UIComponent {
 
             this.value = this.clampValue(normValue);
             this.updatePresetName();
-
-            // Load a factory preset only when the selected preset changes.
-            if (
-                this.currentPresetName !== previousName &&
-                this.factoryNames.includes(this.currentPresetName)
-            ) {
-                presetManager.loadFactory(this.currentPresetName);
-            }
-
             this.isDirty = true;
             this.requestRender();
         });

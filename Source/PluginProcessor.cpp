@@ -12,20 +12,14 @@ JolleyAudioProcessor::JolleyAudioProcessor()
     if (! parameters.state.hasProperty ("uiHeight"))
         parameters.state.setProperty ("uiHeight",DEFAULT_HEIGHT, nullptr);
 
-    // Automatically add this class as a listener to ALL parameters in the layout.
-    for (const auto& tree : parameters.state)
+    for (auto* param : getParameters())
     {
-        parameters.addParameterListener (tree.getProperty (juce::Identifier ("id")).toString(), this);
-    }
-
-    // --- AUTOMATIC INITIALIZATION SYNC (Normalized Values) ---
-    for (const auto& tree : parameters.state)
-    {
-        auto parameterID = tree.getProperty (juce::Identifier ("id")).toString();
-        
-        if (auto* rawParam = parameters.getParameter (parameterID))
+        if (auto* paramWithID = dynamic_cast<juce::RangedAudioParameter*> (param))
         {
-            parameterChanged (parameterID, rawParam->getValue());
+            const auto parameterID = paramWithID->getParameterID();
+
+            parameters.addParameterListener (parameterID, this);
+            parameterChanged (parameterID, paramWithID->getValue());
         }
     }
 }
@@ -298,7 +292,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout JolleyAudioProcessor::create
     addParam(ParamIDs::UNISON_DETUNE,    "Unison Detune",        15.0,  0.0,  100.0);
     addParam(ParamIDs::UNISON_SPREAD,    "Unison Stereo Spread", 0.8, 0.0,    1.0);
     addParam(ParamIDs::VOICE_DRIFT,     "Analog Pitch Drift",   0.0, 0.0,    1.0);
-    addParam(ParamIDs::VOICE_GLIDE,      "Portamento Glide",     0.0, 0.0, 500.0);
+    addParam(ParamIDs::VOICE_GLIDE,      "Portamento Glide",     0.0, 0.0, 200.0);
     addParam(ParamIDs::VOICE_BEND,       "Pitch Bend Range",     2.0, 0.0,   24.0,  1.0);
     addParam(ParamIDs::VOICE_VELOCITY,   "Velocity Depth",       0.5, 0.0,    1.0);
     addParam(ParamIDs::VOICE_MOD_CUTOFF, "Mod Wheel Cutoff",     0.0, -1.0,    1.0);

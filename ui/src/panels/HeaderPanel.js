@@ -12,7 +12,6 @@ import { createKnob } from '../ui/createKnob.js';
 
 export class HeaderPanel extends GridContainer {
     constructor() {
-        console.log('[HeaderPanel] Constructor started');
         super({
             cols: 4,
             rows: 1,

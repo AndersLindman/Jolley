@@ -15,7 +15,7 @@ include(FetchContent)
 FetchContent_Declare(
     JUCE
     GIT_REPOSITORY https://github.com/juce-framework/JUCE.git
-    GIT_TAG        8.0.0
+    GIT_TAG        8.0.16-security
 )
 FetchContent_MakeAvailable(JUCE)
 
@@ -133,7 +133,7 @@ target_link_libraries(Jolley
 # We use target_compile_options instead of global CMAKE_CXX_FLAGS to avoid 
 # polluting JUCE's own build flags.
 if(MSVC)
-    target_compile_options(Jolley PRIVATE $<$<CONFIG:Release>:/O2 /Oi /GL>)
+    target_compile_options(Jolley PRIVATE $<$<CONFIG:Release>:/O2 /Oi /GL /arch:AVX2>)
     target_link_options(Jolley PRIVATE $<$<CONFIG:Release>:/LTCG>)
 elseif(CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
     # Removed -march=native to prevent crashes on user machines with different CPUs!

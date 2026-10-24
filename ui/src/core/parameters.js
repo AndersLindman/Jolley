@@ -366,9 +366,9 @@ export function registerAllParameters(paramStore) {
     paramStore.register({
         id: PARAM_IDS.VOICE_GLIDE,
         name: 'Portamento Glide',
-        defaultValue: 0, // Milliseconds (0ms to 2000ms)
+        defaultValue: 0,
         min: 0,
-        max: 500
+        max: 200
     });
 
     paramStore.register({

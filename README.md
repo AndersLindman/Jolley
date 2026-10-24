@@ -4,7 +4,7 @@
 A software synthesizer and VST3 plugin built with C++ (JUCE) and a web-based UI.
 The name Jolley comes from the discrete summation formula by L.B.W. Jolley used in the oscillators.
 
-![alt text](screenshot.png)
+![alt text](images/screenshot.png)
 
 ---
 
@@ -73,12 +73,7 @@ The compiled VST3 bundle and standalone executable will be output in the `build/
 
 ---
 
-## Development & Testing
 
-* **Fast Testing**: Drop `savihost.exe` into the VST3 bundle contents folder (`Contents/x86_64-win/`), rename it to `Jolley.exe`, and launch it for instant audio/MIDI routing checks.
-* **UI Hot-Reloading**: Run your frontend development server (via Vite) alongside your debug build to iterate on UI changes in real-time.
-
----
 
 ## License
 
